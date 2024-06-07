@@ -101,3 +101,57 @@
 
 
 
+
+
+// var c = 0;
+// function cr(){
+//     return ()=>{
+//         ++c;
+//         console.log(c);
+//     }
+// }
+// let re = cr();
+// re();
+// re();
+// re();
+// re();
+
+// function getq(){
+//     let user = "preeeti";
+//     let pass = "12345";
+//     let c=0;
+
+//     return function(){
+//         let cre = {
+//             user1:user,
+//             password:pass,
+//         }
+//         if(c%3==0){
+//             count+=1;
+//             return cre;
+//         }
+//     }
+// }
+// let res = getq();
+// console.log(res());
+
+function fname(){
+    let username = "preeti";
+    let c=0;
+
+    return function(){
+        let user1={
+            user2:username,
+        }
+        if(c==2){
+            c+=1;
+            return user1;
+        }
+        c+=1;
+        
+    }
+}
+let r = fname();
+console.log(r());
+console.log(r());
+console.log(r());
