@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Search</title>
+</head>
+<body>
+    <div id="result">
+            <img id="image" src="" alt="Movie Poster">
+        <div id="details">
+
+        </div>
+    </div>
+    <script>
+
+        let name=localStorage.getItem('title');
+        console.log('name is :---',name);
+
+
+        let detailsDiv = document.getElementById('details');
+
+            fetch(`https://www.omdbapi.com/?t=${name}&apikey=1e54f907`)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    console.log(data.Poster);
+                    image.src=`${data.Poster}`;
+                    detailsDiv.innerHTML=`Movie Name: ${data.Title}<br>
+                    Rating: ${data.imdbRating}<br>
+                    Released: ${data.Released}<br>
+                    Actors: ${data.Actors}<br>
+                    Writer: ${data.Writer}<br>`;
+
+                })
+                .catch(error => {
+                    console.log("Error:", error);
+                });
+
+       
+    </script>
+</body>
+</html>

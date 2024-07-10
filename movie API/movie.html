@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <div class="main">
+        <div>
+            <h1>Movie API</h1>
+        </div>
+        <div class="input">
+            <input type="text" placeholder="Search Movie Name" id="search">
+            <button class="button" id="button">Search</button>
+        </div>
+    </div>
+    <div class="main2">
+        <h2 id="result">Movie Details</h2>
+        <img src="" id="image">
+    </div>
+    <script>
+        let input = document.getElementById('search');
+        let button = document.getElementById('button');
+        let show = document.getElementById('result');
+        let image = document.getElementById('image');
+
+        button.addEventListener('click', () => {
+            let movieName = input.value;
+            fetch(`https://www.omdbapi.com/?t=${movieName}&apikey=1e54f907`)
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    if (data.Response === "True") {
+                        
+                show.addEventListener('click',()=>{
+                    localStorage.setItem('title',data.Title);
+                    window.location.href='index.html';
+                });
+                        image.src = data.Poster;
+                    } else {
+                        show.innerHTML = `Error: ${data.Error}`;
+                        image.src = "";
+                    }
+                })
+                .catch(error => {
+                    show.innerHTML = `Error: ${error.message}`;
+                    image.src = "";
+                });
+        });
+
+    </script>
+</body>
+
+</html>
